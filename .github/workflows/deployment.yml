@@ -1,7 +1,7 @@
 name: Lint, Test and Deploy
 on: push
 jobs:
-  lint-test-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -12,10 +12,12 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run lint
-        run: npm lint
-      - name: Run test
-        run: npm test
-#      - name: Configure GitHub Pages
-#        uses: actions/configure-pages@v3
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test
+      - name: Build
+        uses: npm run build
+      - name: Deploy
+        uses: echo "Deploying..."
 #
